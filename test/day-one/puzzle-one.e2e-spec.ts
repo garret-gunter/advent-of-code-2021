@@ -1,25 +1,26 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
-import { AppModule } from '~/app.module';
+import { PuzzleOneModule } from '~/day-one/puzzle-one/puzzle-one.module';
+import { UtilModule } from '~/util/util.module';
 
-describe('AppController (e2e)', () => {
+describe('PuzzleOneController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [PuzzleOneModule, UtilModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/puzzle-one (GET)', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .get('/puzzle-one')
       .expect(200)
-      .expect('Hello World!');
+      .expect('1374');
   });
 
   afterAll(async () => {
