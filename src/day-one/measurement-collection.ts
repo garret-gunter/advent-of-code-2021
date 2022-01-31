@@ -1,6 +1,6 @@
-import { once } from 'events';
 import { Readable } from 'stream';
 import { createInterface } from 'readline';
+import { once } from 'events';
 
 export class MeasurementCollection {
   constructor(private provider: () => Readable) {}

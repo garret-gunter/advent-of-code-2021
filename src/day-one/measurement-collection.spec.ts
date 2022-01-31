@@ -1,6 +1,6 @@
-import { MeasurementCollection } from './measurement-collection';
 import { PassThrough, Readable } from 'stream';
 import { EOL } from 'os';
+import { MeasurementCollection } from '~/day-one/measurement-collection';
 
 describe('MeasurementCollection', () => {
   it('should be defined', () => {

@@ -1,6 +1,6 @@
 import { MeasurementProcessor } from './measurement-processor';
-import { MeasurementCollection } from './measurement-collection';
 import { createReadStream } from 'fs';
+import { MeasurementCollection } from '~/day-one/measurement-collection';
 
 describe('MeasurementProcessor', () => {
   beforeEach(() => {
@@ -9,7 +9,7 @@ describe('MeasurementProcessor', () => {
   });
 
   it('should be defined', () => {
-    jest.mock('./measurement-collection', () => {
+    jest.mock('~/day-one/measurement-collection', () => {
       return {
         MeasurementCollection: jest.fn().mockImplementation(() => {
           return {};
@@ -33,6 +33,17 @@ describe('MeasurementProcessor', () => {
 
     await processor.getIncreaseCount().then((count) => {
       expect(count).toBe(7);
+    });
+  });
+
+  it('should count increases with measure windows of 3', async () => {
+    const collection = new MeasurementCollection(() =>
+      createReadStream(__dirname + '/test-input.txt'),
+    );
+    const processor = new MeasurementProcessor(collection);
+
+    await processor.getIncreaseCountByWindow(3).then((count) => {
+      expect(count).toBe(5);
     });
   });
 });

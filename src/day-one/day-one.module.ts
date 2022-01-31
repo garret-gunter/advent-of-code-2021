@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
-import { PuzzleOneModule } from './puzzle-one/puzzle-one.module';
+import { DayOneController } from '~/day-one/day-one.controller';
+import { DayOneService } from '~/day-one/day-one.service';
+import { InputService } from '~/day-one/input.service';
 
 @Module({
-  imports: [PuzzleOneModule],
+  controllers: [DayOneController],
+  providers: [DayOneService, InputService],
 })
 export class DayOneModule {}
