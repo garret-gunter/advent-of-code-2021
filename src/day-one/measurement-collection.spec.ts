@@ -18,7 +18,7 @@ describe('MeasurementCollection', () => {
 
     let count = 0;
     const values = [199, 200, 208];
-    values.forEach((value) => input.push(value + EOL));
+    values.forEach((value) => input.push(`${value}${EOL}`));
     input.push(null);
 
     const collection = new MeasurementCollection(() => input);
@@ -28,7 +28,7 @@ describe('MeasurementCollection', () => {
     });
 
     await new Promise((resolve) => {
-      promise.then(() => {
+      void promise.then(() => {
         expect(count).toBe(3);
 
         resolve(undefined);
