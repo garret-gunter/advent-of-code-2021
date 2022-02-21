@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { AssetService } from '~/util/asset/asset.service';
 import { createReadStream } from 'fs';
-import { MeasurementCollection } from '~/day-one/measurement-collection';
+import { CommandReader } from '~/day-two/input/command-reader';
 
 @Injectable()
 export class InputService {
   constructor(private assets: AssetService) {}
 
-  getInput(): MeasurementCollection {
-    return new MeasurementCollection(() =>
-      createReadStream(this.assets.path('day-one/input.txt')),
+  getInput(): CommandReader {
+    return new CommandReader(() =>
+      createReadStream(this.assets.path('day-two/input.txt')),
     );
   }
 }
