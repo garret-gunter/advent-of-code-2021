@@ -7,12 +7,6 @@ export class DayOneController {
 
   @Get('part-one')
   count(): Promise<number> {
-
-
-
-
-
-    
     return this.service.getProcessor().getIncreaseCount();
   }
 

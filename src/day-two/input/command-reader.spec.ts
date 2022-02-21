@@ -1,7 +1,7 @@
 import { CommandReader } from './command-reader';
 import { PassThrough, Readable } from 'stream';
 import { EOL } from 'os';
-import { Command, Direction } from '~/day-two/command.interface';
+import { Command, Direction } from '~/day-two/input/command.interface';
 
 describe('CommandReader', () => {
   it('should be defined', () => {

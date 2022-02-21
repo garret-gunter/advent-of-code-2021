@@ -1,7 +1,7 @@
 import { Readable } from 'stream';
 import { createInterface } from 'readline';
 import { once } from 'events';
-import { Command, Direction } from '~/day-two/command.interface';
+import { Command, Direction } from '~/day-two/input/command.interface';
 
 export class CommandReader {
   constructor(private provider: () => Readable) {}
