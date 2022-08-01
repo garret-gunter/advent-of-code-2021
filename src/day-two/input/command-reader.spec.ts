@@ -2,12 +2,12 @@ import { CommandReader } from './command-reader';
 import { PassThrough, Readable } from 'stream';
 import { EOL } from 'os';
 import { Command, Direction } from '~/day-two/input/command.interface';
+import { LineReader } from '~/util/asset/line-reader';
 
 describe('CommandReader', () => {
   it('should be defined', () => {
     const input = new PassThrough();
-
-    expect(new CommandReader(() => input)).toBeDefined();
+    expect(new CommandReader(() => new LineReader(() => input))).toBeDefined();
   });
 
   it('should iterate over the collection', async () => {
@@ -28,7 +28,7 @@ describe('CommandReader', () => {
     );
     input.push(null);
 
-    const reader = new CommandReader(() => input);
+    const reader = new CommandReader(() => new LineReader(() => input));
     const promise = reader.each((command: Command) => {
       expect(command.direction).toBe(values[count].direction);
       expect(command.units).toBe(values[count].units);

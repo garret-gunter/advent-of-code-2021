@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AssetService } from '~/util/asset/asset.service';
-import { createReadStream } from 'fs';
 import { CommandReader } from '~/day-two/input/command-reader';
+import { LineReader } from '~/util/asset/line-reader';
 
 @Injectable()
 export class InputService {
@@ -9,7 +9,7 @@ export class InputService {
 
   getInput(): CommandReader {
     return new CommandReader(() =>
-      createReadStream(this.assets.path('day-two/input.txt')),
+      LineReader.forFile(this.assets.path('day-two/input.txt')),
     );
   }
 }

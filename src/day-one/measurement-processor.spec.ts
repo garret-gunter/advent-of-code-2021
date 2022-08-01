@@ -1,6 +1,5 @@
 import { MeasurementProcessor } from './measurement-processor';
-import { createReadStream } from 'fs';
-import { MeasurementCollection } from '~/day-one/measurement-collection';
+import { LineReader } from '~/util/asset/line-reader';
 
 describe('MeasurementProcessor', () => {
   beforeEach(() => {
@@ -9,7 +8,7 @@ describe('MeasurementProcessor', () => {
   });
 
   it('should be defined', () => {
-    jest.mock('~/day-one/measurement-collection', () => {
+    jest.mock('~/util/asset/line-reader', () => {
       return {
         MeasurementCollection: jest.fn().mockImplementation(() => {
           return {};
@@ -17,18 +16,15 @@ describe('MeasurementProcessor', () => {
       };
     });
 
-    const mockedCollection: MeasurementCollection =
-      jest.createMockFromModule<MeasurementCollection>(
-        './measurement-processor',
-      );
+    const mockedCollection: LineReader = jest.createMockFromModule<LineReader>(
+      '~/util/asset/line-reader',
+    );
 
     expect(new MeasurementProcessor(mockedCollection)).toBeDefined();
   });
 
   it('should count increases', async () => {
-    const collection = new MeasurementCollection(() =>
-      createReadStream(__dirname + '/test-input.txt'),
-    );
+    const collection = LineReader.forFile(__dirname + '/test-input.txt');
     const processor = new MeasurementProcessor(collection);
 
     await processor.getIncreaseCount().then((count) => {
@@ -37,9 +33,7 @@ describe('MeasurementProcessor', () => {
   });
 
   it('should count increases with measure windows of 3', async () => {
-    const collection = new MeasurementCollection(() =>
-      createReadStream(__dirname + '/test-input.txt'),
-    );
+    const collection = LineReader.forFile(__dirname + '/test-input.txt');
     const processor = new MeasurementProcessor(collection);
 
     await processor.getIncreaseCountByWindow(3).then((count) => {
