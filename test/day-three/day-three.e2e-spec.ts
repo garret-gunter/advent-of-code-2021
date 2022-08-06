@@ -16,18 +16,18 @@ describe('DayThreeController (e2e)', () => {
     await app.init();
   });
 
-  it.todo('/day-three/part-one (GET)', () => {
+  it('/day-three/part-one (GET)', () => {
     return request(app.getHttpServer())
       .get('/day-three/part-one')
       .expect(200)
-      .expect('1762050');
+      .expect('3549854');
   });
 
-  it.todo('/day-three/part-two (GET)', () => {
+  it('/day-three/part-two (GET)', () => {
     return request(app.getHttpServer())
       .get('/day-three/part-two')
       .expect(200)
-      .expect('1418');
+      .expect('3765399');
   });
 
   afterAll(async () => {

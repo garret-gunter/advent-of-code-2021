@@ -16,7 +16,7 @@ describe('AimingInterpreter', () => {
     [[0, 0, 0], [{ direction: Direction.DOWN, units: 10 }], [0, 0, 10]],
     [[10, 10, 0], [{ direction: Direction.UP, units: 10 }], [10, 10, -10]],
     [[0, 0, 0], [{ direction: Direction.FORWARD, units: 3 }], [3, 0, 0]],
-    [[1, 1, 1], [{ direction: Direction.FORWARD, units: 3 }], [4, 4, 3]],
+    [[1, 1, 1], [{ direction: Direction.FORWARD, units: 3 }], [4, 4, 1]],
     [
       [0, 0, 0],
       [

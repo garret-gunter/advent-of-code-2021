@@ -24,7 +24,7 @@ export class LineReader {
     await once(rl, 'close');
   }
 
-  asIterable(): AsyncIterable<string> {
+  toAsyncIterable(): AsyncIterable<string> {
     // Keep a reference to 'this' to delay opening file until iteration starts.
     return new (class implements AsyncIterable<string> {
       constructor(private reader: LineReader) {}
@@ -70,6 +70,13 @@ export class LineReader {
         };
       }
     })(this);
+  }
+
+  async toArray(): Promise<Array<string>> {
+    const lines: Array<string> = [];
+    await this.each((line) => lines.push(line));
+
+    return Promise.resolve(lines);
   }
 
   static forFile(path: string) {

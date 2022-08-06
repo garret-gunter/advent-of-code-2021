@@ -11,7 +11,7 @@ describe('ConsumptionCalculator', () => {
     const reader: LineReader = LineReader.forFile(
       __dirname + '/test-input.txt',
     );
-    const items: AsyncIterable<string> = reader.asIterable();
+    const items: AsyncIterable<string> = reader.toAsyncIterable();
     const calc = new ConsumptionCalculator(new BitCounter());
 
     return new Promise((resolve) => {

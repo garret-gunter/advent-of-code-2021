@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { DayThreeControllerController } from './day-three-controller.controller';
+import { DayThreeController } from './day-three.controller';
 
 @Module({
-  controllers: [DayThreeControllerController],
+  controllers: [DayThreeController],
 })
 export class DayThreeModule {}

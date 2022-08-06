@@ -16,6 +16,18 @@ export class BitCounter {
     });
   }
 
+  parseArray(lines: Array<string>, reset = true): this {
+    if (reset) {
+      this.reset();
+    }
+
+    for (const line of lines) {
+      this.parseLine(line);
+    }
+
+    return this;
+  }
+
   reset() {
     this.#counts = [];
   }
@@ -32,7 +44,8 @@ export class BitCounter {
     const arr: Array<number> = [];
 
     this.#counts.forEach((value, index) => {
-      arr[index] = value[0] >= value[1] ? 0 : 1;
+      // Ties default to 1.
+      arr[index] = value[0] > value[1] ? 0 : 1;
     });
 
     return arr;
@@ -42,6 +55,7 @@ export class BitCounter {
     const arr: Array<number> = [];
 
     this.#counts.forEach((value, index) => {
+      // Ties default to 0.
       arr[index] = value[0] <= value[1] ? 0 : 1;
     });
 

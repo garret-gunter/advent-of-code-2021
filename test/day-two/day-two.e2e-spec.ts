@@ -27,7 +27,7 @@ describe('DayTwoController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/day-two/part-two')
       .expect(200)
-      .expect('1418');
+      .expect('1855892637');
   });
 
   afterAll(async () => {
