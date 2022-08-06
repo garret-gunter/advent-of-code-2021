@@ -2,32 +2,32 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { UtilModule } from '~/util/util.module';
-import { DayTwoModule } from '~/day-two/day-two.module';
+import { DayThreeModule } from '~/day-three/day-three.module';
 
-describe('DayTwoController (e2e)', () => {
+describe('DayThreeController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [DayTwoModule, UtilModule],
+      imports: [DayThreeModule, UtilModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();
   });
 
-  it('/day-two/part-one (GET)', () => {
+  it('/day-three/part-one (GET)', () => {
     return request(app.getHttpServer())
-      .get('/day-two/part-one')
+      .get('/day-three/part-one')
       .expect(200)
-      .expect('1762050');
+      .expect('3549854');
   });
 
-  it('/day-two/part-two (GET)', () => {
+  it('/day-three/part-two (GET)', () => {
     return request(app.getHttpServer())
-      .get('/day-two/part-two')
+      .get('/day-three/part-two')
       .expect(200)
-      .expect('1855892637');
+      .expect('3765399');
   });
 
   afterAll(async () => {

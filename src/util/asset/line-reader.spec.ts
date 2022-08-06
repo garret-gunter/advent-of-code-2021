@@ -1,12 +1,12 @@
+import { LineReader } from './line-reader';
 import { PassThrough, Readable } from 'stream';
 import { EOL } from 'os';
-import { MeasurementCollection } from '~/day-one/measurement-collection';
 
-describe('MeasurementCollection', () => {
+describe('LineReader', () => {
   it('should be defined', () => {
     const input = new PassThrough();
 
-    expect(new MeasurementCollection(() => input)).toBeDefined();
+    expect(new LineReader(() => input)).toBeDefined();
   });
 
   it('should iterate over the collection', async () => {
@@ -21,8 +21,8 @@ describe('MeasurementCollection', () => {
     values.forEach((value) => input.push(`${value}${EOL}`));
     input.push(null);
 
-    const collection = new MeasurementCollection(() => input);
-    const promise = collection.each((line: string) => {
+    const reader = new LineReader(() => input);
+    const promise = reader.each((line: string) => {
       expect(parseInt(line)).toBe(values[count]);
       count++;
     });

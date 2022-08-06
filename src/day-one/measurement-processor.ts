@@ -1,8 +1,8 @@
-import { MeasurementCollection } from '~/day-one/measurement-collection';
 import { MeasurementWindow } from '~/day-one/measurement-window';
+import { LineReader } from '~/util/asset/line-reader';
 
 export class MeasurementProcessor {
-  constructor(private collection: MeasurementCollection) {}
+  constructor(private collection: LineReader) {}
 
   async getIncreaseCount(): Promise<number> {
     let count = 0;

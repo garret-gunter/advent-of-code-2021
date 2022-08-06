@@ -1,27 +1,13 @@
-import { Readable } from 'stream';
-import { createInterface } from 'readline';
-import { once } from 'events';
 import { Command, Direction } from '~/day-two/input/command.interface';
+import { LineReader } from '~/util/asset/line-reader';
 
 export class CommandReader {
-  constructor(private provider: () => Readable) {}
+  constructor(private provider: () => LineReader) {}
 
   async each(callback: (command: Command) => void): Promise<void> {
-    const stream = this.provider();
-    const rl = createInterface({
-      input: stream,
-      crlfDelay: Infinity,
-    });
-
-    stream.on('close', () => {
-      rl.close();
-    });
-
-    rl.on('line', (line) => {
-      CommandReader.readLine(line, callback);
-    });
-
-    await once(rl, 'close');
+    return this.provider().each((line) =>
+      CommandReader.readLine(line, callback),
+    );
   }
 
   private static readLine(line: string, callback: (command: Command) => void) {

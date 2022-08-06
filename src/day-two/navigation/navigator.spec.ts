@@ -1,8 +1,8 @@
 import { Navigator } from './navigator';
 import { Position } from '~/day-two/navigation/position';
 import { CommandReader } from '~/day-two/input/command-reader';
-import { createReadStream } from 'fs';
 import { SimpleInterpreter } from '~/day-two/interpreter/simple-interpreter';
+import { LineReader } from '~/util/asset/line-reader';
 
 describe('Navigator', () => {
   it('should be defined', () => {
@@ -12,7 +12,7 @@ describe('Navigator', () => {
 
   it('should find process test input', async () => {
     const reader = new CommandReader(() =>
-      createReadStream(__dirname + '/test-input.txt'),
+      LineReader.forFile(__dirname + '/test-input.txt'),
     );
 
     const navigator = new Navigator(new Position(), new SimpleInterpreter());
